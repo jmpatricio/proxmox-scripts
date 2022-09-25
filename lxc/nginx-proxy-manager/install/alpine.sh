@@ -102,12 +102,12 @@ runcmd pip3 install --no-cache-dir cffi certbot
 log "Checking for latest NPM release"
 # Get latest version information for nginx-proxy-manager
 runcmd 'wget $WGETOPT -O ./_latest_release $NPMURL/releases/latest'
-_latest_version=$(basename $(cat ./_latest_release | grep -wo "NginxProxyManager/.*.tar.gz") .tar.gz | cut -d'v' -f2)
+_latest_version="2.9.18"
 
 # Download nginx-proxy-manager source
 log "Downloading NPM v$_latest_version"
-runcmd 'wget $WGETOPT -c $NPMURL/archive/v$_latest_version.tar.gz -O - | tar -xz'
-cd ./nginx-proxy-manager-$_latest_version
+runcmd 'wget $WGETOPT -c https://github.com/NginxProxyManager/nginx-proxy-manager/archive/refs/tags/v2.9.18.tar.gz -O - | tar -xz'
+cd ./nginx-proxy-manager-2.9.18
 
 log "Setting up enviroment"
 # Crate required symbolic links
